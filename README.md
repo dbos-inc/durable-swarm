@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Make Swarm Durable!
 
 You can make Swarm durable by simply overriding the original class and add DBOS decorators.
-Create a `durable_swarm.py` file and put:
+Create a `durable_swarm.py` file:
 
 ```python
 from swarm import Swarm
@@ -41,7 +41,11 @@ class DurableSwarm(Swarm, DBOSConfiguredInstance):
 DBOS.launch()
 ```
 
-Now, you can use `DurableSwarm` as a drop-in replacement for `Swarm`!
+Under the hood, `@DBOS.workflow()` starts a reliable workflow composed of steps (functions decorated with `@DBOS.step()`).
+DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
+Therefore, if your workflow is ever interrupted, DBOS can correctly resume it from the last completed step!
+
+Now, you can use `DurableSwarm` as a drop-in replacement for `Swarm`.
 
 ## Usage
 
@@ -102,11 +106,16 @@ DBOS is a lightweight durable execution library. All you need is a Postgres data
 
 ## Examples
 
+Updating your existing Swarm apps to use DurableSwarm is simple:
+1. Add the `durable_swarm.py` file
+2. Change your app to use `DurableSwarm` instead
+3. Run `dbos init --config` in your app folder
+
 Learn more about each example in its README. Durable Swarm supports all original examples, plus a modified agent to demonstrate durable workflows.
 
-- [`basic`](./basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
-- [`triage_agent`](./triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
-- [`weather_agent`](./weather_agent/): Simple example of function calling
-- [`airline`](./airline/): A multi-agent setup for handling different customer service requests in an airline context.
-- [`support_bot`](./support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
-- [`personal_shopper`](./personal_shopper/): A personal shopping agent that can help with making sales and refunding orders
+- [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
+- [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
+- [`weather_agent`](examples/weather_agent/): Simple example of function calling
+- [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context.
+- [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
+- [`personal_shopper`](examples/personal_shopper/): A personal shopping agent that can help with making sales and refunding orders
