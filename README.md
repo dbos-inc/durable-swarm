@@ -17,12 +17,12 @@ If an agent spends hours waiting for user interactive user inputs or processing 
 However, building reliable applications isn't easy&mdash;and you shouldn't have to deal with the complexity of using SQS or Kafka to communicate between agents to build a usable system.
 
 Durable execution helps you write reliable agents while preserving the ease of use of a framework like Swarm.
-The idea is to transparently store the execution state of your Swarm workflow in a Postgres database.
+The idea is to automatically store the execution state of your Swarm workflow in a Postgres database.
 That way, if your program is interrupted, it can automatically resume each in-progress agentic workflow from the last completed step.
 
 ## Installation
 
-Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
+Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Requires Python 3.10+.
 
 ```
 pip install dbos git+https://github.com/openai/swarm.git
@@ -30,8 +30,7 @@ pip install dbos git+https://github.com/openai/swarm.git
 
 ## Make Swarm Durable!
 
-You can make Swarm durable by simply overriding the original class and add DBOS decorators.
-Create a `durable_swarm.py` file:
+To add Durable Swarm to your project, simply create a `durable_swarm.py` file containing the following code:
 
 ```python
 from swarm import Swarm
@@ -60,11 +59,11 @@ class DurableSwarm(Swarm, DBOSConfiguredInstance):
 DBOS.launch()
 ```
 
-Under the hood, `@DBOS.workflow()` starts a reliable workflow composed of steps (functions decorated with `@DBOS.step()`).
-DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
-Therefore, if your workflow is ever interrupted, DBOS can correctly resume it from the last completed step!
+Then use `DurableSwarm` instead of `Swarm` in your applications&mdash;it's a drop-in replacement.
 
-Now, you can use `DurableSwarm` as a drop-in replacement for `Swarm`.
+Under the hood, this works because the decorators declare Swarm's main loop to be a durably executed workflow and each chat completion or tool call to be a step in that workflow.
+DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
+Therefore, if your workflow is ever interrupted, DBOS can automatically resume it from the last completed step!
 
 ## Usage
 
