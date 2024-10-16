@@ -115,22 +115,21 @@ Ready to help you today,
 What do you need, friend?
 ```
 
+You can convert any existing Swarm app to DurableSwarm in three simple steps:
+
+1. Install `dbos` and initialize it with `dbos init --config`.
+2. Add the `durable_swarm.py` file to your project.
+3. Use `DurableSwarm` in place of `Swarm` in your application.
+
 ## Examples
 
-Updating your existing Swarm apps to use DurableSwarm is simple:
-1. Add the `durable_swarm.py` file
-2. Change your app to use `DurableSwarm` instead
-3. Run `dbos init --config` in your app folder
-
-Learn more about each example in its README. Durable Swarm supports all original examples, plus a modified agent to demonstrate durable workflows.
-
-We converted each of the original Swarm demo apps to DurableSwarm. Learn more about each one in its README.
-
-> [!NOTE]
-> We didn't convert demos that aren't yet complete, like `personal_shopper` (https://github.com/openai/swarm/issues/49).
+We converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
 
 - [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
 - [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
 - [`weather_agent`](examples/weather_agent/): Simple example of function calling
 - [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context
 - [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
+
+> [!NOTE]
+> We didn't convert demos that aren't yet complete, like [`personal_shopper`](https://github.com/openai/swarm/issues/49).
