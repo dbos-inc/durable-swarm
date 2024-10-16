@@ -3,6 +3,8 @@
 This example is a Swarm containing a triage agent, which takes in user inputs and chooses whether to respond directly, or triage the request
 to a sales or refunds agent.
 
+In this example, we enhance Swarm with DBOS to be **durable**, using [`durable_swarm.py`](./durable_swarm.py) as a drop-in replacement for `Swarm`.
+
 ## Setup
 
 To run the triage agent Swarm:

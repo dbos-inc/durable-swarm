@@ -2,6 +2,8 @@
 
 This example is a weather agent demonstrating function calling with a single agent. The agent has tools to get the weather of a particular city, and send an email.
 
+In this example, we enhance Swarm with DBOS to be **durable**, using [`durable_swarm.py`](./durable_swarm.py) as a drop-in replacement for `Swarm`.
+
 ## Setup
 
 To run the weather agent Swarm:
