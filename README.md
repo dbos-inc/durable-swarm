@@ -20,15 +20,8 @@ Durable execution helps you write reliable agents while preserving the **ease of
 The idea is to automatically store the execution state of your Swarm workflow in a Postgres database.
 That way, if your program is interrupted, it can automatically resume your agentic workflows from the last completed step.
 
-## Installation
 
-Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Requires Python 3.10+.
-
-```
-pip install dbos git+https://github.com/openai/swarm.git
-```
-
-## Make Swarm Durable!
+## Making Swarm Durable
 
 To add Durable Swarm to your project, simply create a `durable_swarm.py` file containing the following code:
 
@@ -65,9 +58,16 @@ Under the hood, this works by declaring Swarm's main loop to be a durably execut
 DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
 Therefore, if your workflow is ever interrupted, DBOS can automatically resume it from the last completed step!
 
-## Usage
+## Getting Started
 
-Create `main.py` and put this script in the same folder as `durable_swarm.py`:
+Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Swarm requires Python 3.10+.
+
+```
+pip install dbos git+https://github.com/openai/swarm.git
+dbos init --config
+```
+
+To try it out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
 
 ```python
 from swarm import Agent
@@ -98,18 +98,15 @@ response = client.run(
 print(response.messages[-1]["content"])
 ```
 
-Then, create a DBOS config file:
-```
-dbos init --config
-```
+DBOS requires Postgres.
+If you already have a Postgres server, modify `dbos-config.yaml` to configure its connection information.
+Otherwise, you can start Postgres using Docker:
 
-If you already have a Postgres server, you can modify `dbos-config.yaml` to config the connection info.
-Otherwise, you could start one locally:
 ```
 python3 start_postgres_docker.py
 ```
 
-Finally, run this script:
+Finally, run your agents:
 ```
 > python3 main.py
 
@@ -117,10 +114,6 @@ Agent B is here,
 Ready to help you today,
 What do you need, friend?
 ```
-
-## Overview
-
-DBOS is a lightweight durable execution library. All you need is a Postgres database.
 
 ## Examples
 
@@ -131,9 +124,13 @@ Updating your existing Swarm apps to use DurableSwarm is simple:
 
 Learn more about each example in its README. Durable Swarm supports all original examples, plus a modified agent to demonstrate durable workflows.
 
+We converted each of the original Swarm demo apps to DurableSwarm. Learn more about each one in its README.
+
+> [!NOTE]
+> We didn't convert demos that aren't yet complete, like `personal_shopper` (https://github.com/openai/swarm/issues/49).
+
 - [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
 - [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
 - [`weather_agent`](examples/weather_agent/): Simple example of function calling
 - [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context
 - [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
-- [`personal_shopper`](#): ~~A personal shopping agent that can help with making sales and refunding orders~~ (the original demo is broken)
