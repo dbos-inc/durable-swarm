@@ -121,4 +121,4 @@ Learn more about each example in its README. Durable Swarm supports all original
 - [`weather_agent`](examples/weather_agent/): Simple example of function calling
 - [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context.
 - [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
-- [`personal_shopper`](examples/personal_shopper/): A personal shopping agent that can help with making sales and refunding orders
+- [`personal_shopper`](#): ~~A personal shopping agent that can help with making sales and refunding orders~~ (the original demo is broken)

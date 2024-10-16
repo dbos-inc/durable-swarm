@@ -1,0 +1,4 @@
+qdrant-client
+dbos==0.10.0a2
+swarm @ git+https://github.com/openai/swarm.git@9db581cecaacea0d46a933d6453c312b034dbf47
+pandas
