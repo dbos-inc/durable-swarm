@@ -7,9 +7,6 @@ This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/m
 Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
 Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to persist your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
 
-> [!NOTE]
-> DurableSwarm currently doesn't support streaming
-
 ## Why Durable Execution?
 
 As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
@@ -122,6 +119,9 @@ You can convert any existing Swarm app to DurableSwarm in three simple steps:
 1. Install `dbos` and initialize it with `dbos init --config`.
 2. Add the `durable_swarm.py` file to your project.
 3. Use `DurableSwarm` in place of `Swarm` in your application.
+
+> [!NOTE]
+> DurableSwarm currently doesn't support streaming
 
 ## Examples
 
