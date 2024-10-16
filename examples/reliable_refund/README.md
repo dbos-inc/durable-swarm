@@ -1,15 +1,17 @@
-# Reliable Refund Agent
+# Durable Refund Agent
 
-This example is a Durable Swarm containing a refund agent, which takes in user name, processes a refund, and then apply a discount.
+This example uses Durable Swarm to orchestrate a refund agent.
+It takes in a name, processes a refund, then applies a discount.
 
-What's unique about this example is that each refund is processed exactly once, so even if you crash the application, it can always resume from the last step and proceed to completion.
+The function for processing refunds takes a long time!
+However, thanks to **durable execution**, even if the app is interrupted during refund processing (or at any other time), it automatically recovers from where it left off, processes the refund to completion, then proceeds to the next step in the agentic workflow.
 
 ![Durable Swarm Demo](../../assets/demo.gif)
 
 
 ## Try it out!
 
-To run the triage agent Durable Swarm:
+To run the demo:
 
 ```shell
 python3 run.py
