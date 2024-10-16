@@ -12,7 +12,7 @@ Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to 
 
 ## Why Durable Execution?
 
-As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them be **reliable**.
+As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
 If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as a server restart.
 However, making multi-agent orchestration reliable isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
 
