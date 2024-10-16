@@ -115,6 +115,8 @@ Ready to help you today,
 What do you need, friend?
 ```
 
+## Converting Existing Apps to DurableSwarm
+
 You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 1. Install `dbos` and initialize it with `dbos init --config`.
