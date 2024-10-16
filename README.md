@@ -2,6 +2,9 @@
 
 This repo contains tutorials on how to make [OpenAI Swarm](https://github.com/openai/swarm/tree/main) **durable** with 6 lines of DBOS code in Python, and how to use it to as a drop-in replacement for Swarm to build reliable applications.
 
+> [!NOTE]
+> DurableSwarm currently doesn't support streaming
+
 ## Install Dependencies
 
 Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
