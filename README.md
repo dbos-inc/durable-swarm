@@ -2,7 +2,7 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
-This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to help you build reliable and scalable multi-agent systems.
+This repository augments [OpenAI's Swarm](https://github.com/openai/swarm) with **durable execution** to help you build **reliable** multi-agent systems.
 
 Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
 Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to persist your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
@@ -10,12 +10,12 @@ Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to 
 ## Why Durable Execution?
 
 As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
-If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as a server restart.
+If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as server restarts.
 However, reliable multi-agent orchestration isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
 
 Durable execution helps you write reliable agents while preserving the **ease of use** of a framework like Swarm.
 The idea is to automatically persist the execution state of your Swarm workflow in a Postgres database.
-That way, if your program is interrupted, it can automatically resume your agentic workflows from the last completed step.
+That way, if your program is interrupted, it can automatically resume your agentic workflows from their last completed steps.
 
 
 ## Making Swarm Durable
@@ -57,7 +57,7 @@ Therefore, if your workflow is ever interrupted, DBOS can automatically resume i
 
 ## Getting Started
 
-Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Swarm requires Python 3.10+.
+To get started, install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Swarm requires Python >=3.10.
 
 ```
 pip install dbos git+https://github.com/openai/swarm.git
