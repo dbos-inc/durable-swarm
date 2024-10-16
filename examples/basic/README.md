@@ -1,7 +1,10 @@
 # Durable Swarm basic
 
-This folder contains basic examples from the original [Swarm repo](https://github.com/openai/swarm/tree/main/examples/basic).
-These examples show how to enhance Swarm with DBOS to be **durable** ([`durable_swarm.py`](./durable_swarm.py)), and how to use `DurableSwarm` as a drop-in replacement for `Swarm`.
+This folder contains basic examples demonstrating core Swarm capabilities.
+These examples show the simplest implementations of Swarm, with one input message, and a corresponding output.
+The simple_loop_no_helpers has a while loop to demonstrate how to create an interactive Swarm session.
+
+In each example, we enhance Swarm with DBOS to be **durable**, using [`durable_swarm.py`](./durable_swarm.py) as a drop-in replacement for `Swarm`.
 
 ### Examples
 
