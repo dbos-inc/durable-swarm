@@ -1,7 +1,7 @@
 # Durable Refund Agent
 
 This example uses Durable Swarm to orchestrate a refund agent.
-It takes in a name, processes a refund, then applies a discount.
+It takes in a users's name, processes a refund for that user, then applies a discount.
 
 The function for processing refunds takes a long time!
 However, thanks to **durable execution**, even if the agent is interrupted during refund processing (or at any other time), it automatically recovers to its last completed step, processes the refund to completion, then proceeds to the next step in its workflow.
