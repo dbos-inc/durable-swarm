@@ -2,10 +2,10 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
-This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to provide a framework for building reliable, scalable multi-agent systems.
+This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to help you build reliable, scalable multi-agent systems.
 
-It provides a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from the last completed steps.
-Under the hood, this works by using [DBOS](https://github.com/dbos-inc/dbos-transact-py) to store your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
+Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
+Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to store your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
 
 > [!NOTE]
 > DurableSwarm currently doesn't support streaming
@@ -13,12 +13,12 @@ Under the hood, this works by using [DBOS](https://github.com/dbos-inc/dbos-tran
 ## Why Durable Execution?
 
 As multi-agent workflows become more common, more long-running, and more interactive, it's important to make them be **reliable**.
-If an agent spends hours waiting for user interactive user inputs or processing complex workflows, it needs to be robust to transient failures like a server restarting.
-However, building reliable applications isn't easy&mdash;and you shouldn't have to deal with the complexity of using SQS or Kafka to communicate between agents to build a usable system.
+If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures like a server restarting.
+However, building reliable applications isn't easy&mdash;and you should be able to build a usable system without the complexity of using SQS or Kafka to communicate between agents.
 
-Durable execution helps you write reliable agents while preserving the ease of use of a framework like Swarm.
+Durable execution helps you write reliable agents while preserving the **ease of use** of a framework like Swarm.
 The idea is to automatically store the execution state of your Swarm workflow in a Postgres database.
-That way, if your program is interrupted, it can automatically resume each in-progress agentic workflow from the last completed step.
+That way, if your program is interrupted, it can automatically resume your agentic workflows from the last completed step.
 
 ## Installation
 
@@ -61,7 +61,7 @@ DBOS.launch()
 
 Then use `DurableSwarm` instead of `Swarm` in your applications&mdash;it's a drop-in replacement.
 
-Under the hood, this works because the decorators declare Swarm's main loop to be a durably executed workflow and each chat completion or tool call to be a step in that workflow.
+Under the hood, this works by declaring Swarm's main loop to be a durably executed workflow and each chat completion or tool call to be a step in that workflow.
 DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
 Therefore, if your workflow is ever interrupted, DBOS can automatically resume it from the last completed step!
 
