@@ -11,7 +11,7 @@ Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to 
 
 As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
 If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as a server restart.
-However, making multi-agent orchestration reliable isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
+However, reliable multi-agent orchestration isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
 
 Durable execution helps you write reliable agents while preserving the **ease of use** of a framework like Swarm.
 The idea is to automatically persist the execution state of your Swarm workflow in a Postgres database.
