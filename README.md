@@ -2,17 +2,31 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
-This repo contains tutorials on how to make [OpenAI Swarm](https://github.com/openai/swarm/tree/main) **durable** with 6 lines of DBOS code in Python, and how to use it to as a drop-in replacement for Swarm to build reliable applications.
+This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to provide a framework for building reliable, scalable multi-agent systems.
+
+It provides a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from the last completed steps.
+Under the hood, this works by using [DBOS](https://github.com/dbos-inc/dbos-transact-py) to store your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
 
 > [!NOTE]
 > DurableSwarm currently doesn't support streaming
 
-## Install Dependencies
+## Installation
 
 Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
+
 ```
-pip install -r requirements.txt
+pip install dbos git+https://github.com/openai/swarm.git
 ```
+
+## Why Durable Execution?
+
+As multi-agent workflows become more common, more long-running, and more interactive, it's important to make them be **reliable**.
+If an agent spends hours waiting for user interactive user inputs or processing complex workflows, it needs to be robust to transient failures like a server restarting.
+However, building reliable applications isn't easy&mdash;and you shouldn't have to deal with the complexity of using SQS or Kafka to communicate between agents to build a usable system.
+
+Durable execution helps you write reliable agents while preserving the ease of use of a framework like Swarm.
+The idea is to transparently store the execution state of your Swarm workflow in a Postgres database.
+That way, if your program is interrupted, it can automatically resume each in-progress agentic workflow from the last completed step.
 
 ## Make Swarm Durable!
 
