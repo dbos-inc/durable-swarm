@@ -13,7 +13,7 @@ def process_refund(context_variables, item_id, reason="NOT SPECIFIED"):
 
 @DBOS.step()
 def refund_step(step_id):
-    print(f"[mock] Processing refund step {step_id}... Please wait or press Control + C to stop the app")
+    print(f"[mock] Processing refund step {step_id}... Press Control + C to quit")
 
 @DBOS.step()
 def apply_discount():
