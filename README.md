@@ -125,7 +125,11 @@ You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 ## Examples
 
-We converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
+We created a new example highlighting how to use Durable Swarm to build a durable refund agent that automatically recovers from interruptions while processing refunds.
+
+- [`reliable_refund`](examples/reliable_refund/)
+
+We also converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
 
 - [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
 - [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
