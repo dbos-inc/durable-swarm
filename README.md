@@ -2,22 +2,25 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
-This repo contains tutorials on how to make [OpenAI Swarm](https://github.com/openai/swarm/tree/main) **durable** with 6 lines of DBOS code in Python, and how to use it to as a drop-in replacement for Swarm to build reliable applications.
+This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to help you build reliable and scalable multi-agent systems.
 
-> [!NOTE]
-> DurableSwarm currently doesn't support streaming
+Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
+Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to persist your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
 
-## Install Dependencies
+## Why Durable Execution?
 
-Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
-```
-pip install -r requirements.txt
-```
+As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
+If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as a server restart.
+However, reliable multi-agent orchestration isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
 
-## Make Swarm Durable!
+Durable execution helps you write reliable agents while preserving the **ease of use** of a framework like Swarm.
+The idea is to automatically persist the execution state of your Swarm workflow in a Postgres database.
+That way, if your program is interrupted, it can automatically resume your agentic workflows from the last completed step.
 
-You can make Swarm durable by simply overriding the original class and add DBOS decorators.
-Create a `durable_swarm.py` file:
+
+## Making Swarm Durable
+
+To add Durable Swarm to your project, simply create a `durable_swarm.py` file containing the following code:
 
 ```python
 from swarm import Swarm
@@ -46,15 +49,22 @@ class DurableSwarm(Swarm, DBOSConfiguredInstance):
 DBOS.launch()
 ```
 
-Under the hood, `@DBOS.workflow()` starts a reliable workflow composed of steps (functions decorated with `@DBOS.step()`).
+Then use `DurableSwarm` instead of `Swarm` in your applications&mdash;it's a drop-in replacement.
+
+Under the hood, this works by declaring Swarm's main loop to be a durably executed workflow and each chat completion or tool call to be a step in that workflow.
 DBOS persists the input of a workflow and the outputs of its steps in a Postgres database.
-Therefore, if your workflow is ever interrupted, DBOS can correctly resume it from the last completed step!
+Therefore, if your workflow is ever interrupted, DBOS can automatically resume it from the last completed step!
 
-Now, you can use `DurableSwarm` as a drop-in replacement for `Swarm`.
+## Getting Started
 
-## Usage
+Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py) and initialize DBOS. Swarm requires Python 3.10+.
 
-Create `main.py` and put this script in the same folder as `durable_swarm.py`:
+```
+pip install dbos git+https://github.com/openai/swarm.git
+dbos init --config
+```
+
+To try it out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
 
 ```python
 from swarm import Agent
@@ -85,18 +95,15 @@ response = client.run(
 print(response.messages[-1]["content"])
 ```
 
-Then, create a DBOS config file:
-```
-dbos init --config
-```
+DBOS requires Postgres.
+If you already have a Postgres server, modify `dbos-config.yaml` to configure its connection information.
+Otherwise, you can start Postgres using Docker:
 
-If you already have a Postgres server, you can modify `dbos-config.yaml` to config the connection info.
-Otherwise, you could start one locally:
 ```
 python3 start_postgres_docker.py
 ```
 
-Finally, run this script:
+Finally, run your agents:
 ```
 > python3 main.py
 
@@ -105,22 +112,26 @@ Ready to help you today,
 What do you need, friend?
 ```
 
-## Overview
+## Converting Existing Apps to DurableSwarm
 
-DBOS is a lightweight durable execution library. All you need is a Postgres database.
+You can convert any existing Swarm app to DurableSwarm in three simple steps:
+
+1. Install `dbos` and initialize it with `dbos init --config`.
+2. Add the `durable_swarm.py` file to your project.
+3. Use `DurableSwarm` in place of `Swarm` in your application.
+
+> [!NOTE]
+> DurableSwarm currently doesn't support streaming
 
 ## Examples
 
-Updating your existing Swarm apps to use DurableSwarm is simple:
-1. Add the `durable_swarm.py` file
-2. Change your app to use `DurableSwarm` instead
-3. Run `dbos init --config` in your app folder
-
-Learn more about each example in its README. Durable Swarm supports all original examples, plus a modified agent to demonstrate durable workflows.
+We converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
 
 - [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
 - [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
 - [`weather_agent`](examples/weather_agent/): Simple example of function calling
 - [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context
 - [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
-- [`personal_shopper`](#): ~~A personal shopping agent that can help with making sales and refunding orders~~ (the original demo is broken)
+
+> [!NOTE]
+> We didn't convert demos that aren't yet complete, like [`personal_shopper`](https://github.com/openai/swarm/issues/49).
