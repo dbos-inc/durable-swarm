@@ -1,4 +1,6 @@
-# Durable Swarm: Durable Multi-Agent Orchestration
+![Durable Swarm Logo](assets/durable-swarm-banner.png)
+
+# DurableSwarm: Reliable Multi-Agent Orchestration
 
 This repo contains tutorials on how to make [OpenAI Swarm](https://github.com/openai/swarm/tree/main) **durable** with 6 lines of DBOS code in Python, and how to use it to as a drop-in replacement for Swarm to build reliable applications.
 
@@ -119,6 +121,6 @@ Learn more about each example in its README. Durable Swarm supports all original
 - [`basic`](examples/basic/): Simple examples of fundamentals like setup, function calling, handoffs, and context variables
 - [`triage_agent`](examples/triage_agent/): Simple example of setting up a basic triage step to hand off to the right agent
 - [`weather_agent`](examples/weather_agent/): Simple example of function calling
-- [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context.
+- [`airline`](examples/airline/): A multi-agent setup for handling different customer service requests in an airline context
 - [`support_bot`](examples/support_bot/): A customer service bot which includes a user interface agent and a help center agent with several tools
 - [`personal_shopper`](#): ~~A personal shopping agent that can help with making sales and refunding orders~~ (the original demo is broken)
