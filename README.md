@@ -2,7 +2,7 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
-This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to help you build reliable, scalable multi-agent systems.
+This repository augments [OpenAI's Swarm](https://github.com/openai/swarm/tree/main) with **durable execution** to help you build reliable and scalable multi-agent systems.
 
 Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
 Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to persist your agentic workflows' execution state (which workflows are currently executing and which steps they've completed) in a Postgres database.
