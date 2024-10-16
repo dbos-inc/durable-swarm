@@ -18,6 +18,6 @@ database:
     - echo 'No migrations specified'
 telemetry:
   logs:
-    logLevel: INFO
+    logLevel: WARNING
 env:
   OPENAI_API_KEY: ${OPENAI_API_KEY}

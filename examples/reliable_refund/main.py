@@ -10,7 +10,7 @@ client = DurableSwarm()
 def main():
     print("Connecting to Durable Refund Agent 💪🐝")
 
-    user_name = input("\033[90mWhat's your name\033[0m: ")
+    user_name = input("\033[90mWhat's your name\033[0m: \n")
     if user_name.strip() == "":
         return  # Exit if user doesn't provide a name
 
