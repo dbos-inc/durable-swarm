@@ -4,7 +4,7 @@ This example uses Durable Swarm to orchestrate a refund agent.
 It takes in a name, processes a refund, then applies a discount.
 
 The function for processing refunds takes a long time!
-However, thanks to **durable execution**, even if the app is interrupted during refund processing (or at any other time), it automatically recovers from where it left off, processes the refund to completion, then proceeds to the next step in the agentic workflow.
+However, thanks to **durable execution**, even if the agent is interrupted during refund processing (or at any other time), it automatically recovers to its last completed step, processes the refund to completion, then proceeds to the next step in its workflow.
 
 ![Durable Swarm Demo](../../assets/demo.gif)
 
@@ -18,7 +18,7 @@ python3 run.py
 ```
 
 You can press `Ctrl+C` at any point while the agent is processing your refund.
-If you restart the program again, you'll see DBOS automatically recovers the incomplete workflow and resumes from the last step.
+If you restart the program again, you'll see DBOS automatically recovers the incomplete workflow and resumes it from its last completed step.
 
 For example:
 
@@ -47,19 +47,4 @@ process_refund("item_id"= "item_99", "reason"= "Too expensive and I don't like i
 apply_discount()
 Refunds Agent: I've processed the refund for item 99 and also applied a discount of 11% for your next purchase. If there's anything else you need, feel free to ask!
 
-```
-
-If you input the same name again, it will skip all the processed `refund_step()` and also the `apply_discount()` step (no messages print from those steps). Because with DBOS, You only get refunded once!
-
-```shell
-> python3 main.py
-
-Connecting to Durable Refund Agent 💪🐝
-What's your name: Max
-[mock] Refunding for Max, item item_99, because Too expensive and I don't like its color...
-[mock] Refund successfully processed!
-Refunds Agent:
-process_refund("item_id"= "item_99", "reason"= "Too expensive and I don't like its color")
-apply_discount()
-Refunds Agent: I've processed the refund for item 99 and also applied a discount of 11% for your next purchase. If there's anything else you need, feel free to ask!
 ```
