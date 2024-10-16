@@ -10,14 +10,6 @@ Under the hood, this works by using [DBOS](https://github.com/dbos-inc/dbos-tran
 > [!NOTE]
 > DurableSwarm currently doesn't support streaming
 
-## Installation
-
-Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
-
-```
-pip install dbos git+https://github.com/openai/swarm.git
-```
-
 ## Why Durable Execution?
 
 As multi-agent workflows become more common, more long-running, and more interactive, it's important to make them be **reliable**.
@@ -27,6 +19,14 @@ However, building reliable applications isn't easy&mdash;and you shouldn't have 
 Durable execution helps you write reliable agents while preserving the ease of use of a framework like Swarm.
 The idea is to transparently store the execution state of your Swarm workflow in a Postgres database.
 That way, if your program is interrupted, it can automatically resume each in-progress agentic workflow from the last completed step.
+
+## Installation
+
+Install [Swarm](https://github.com/openai/swarm/tree/main) and [DBOS](https://github.com/dbos-inc/dbos-transact-py). Requires Python 3.10+
+
+```
+pip install dbos git+https://github.com/openai/swarm.git
+```
 
 ## Make Swarm Durable!
 
