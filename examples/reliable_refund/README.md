@@ -4,7 +4,7 @@ This example is a Durable Swarm containing a refund agent, which takes in user n
 
 What's unique about this example is that each refund is processed exactly once, so even if you crash the application, it can always resume from the last step and proceed to completion.
 
-![Durable Swarm Demo](assets/demo.gif)
+![Durable Swarm Demo](../../assets/demo.gif)
 
 
 ## Try it out!
