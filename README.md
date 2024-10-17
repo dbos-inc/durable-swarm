@@ -125,9 +125,10 @@ You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 ## Examples
 
-We created a new example highlighting how to use Durable Swarm to build a durable refund agent that automatically recovers from interruptions while processing refunds.
+We created an example app using Durable Swarm to build a durable refund agent that automatically recovers from interruptions while processing refunds.
+Check it out [here](examples/reliable_refund/) or watch this GIF of the app in action:
 
-- [`reliable_refund`](examples/reliable_refund/)
+![Durable Swarm Demo](assets/demo.gif)
 
 We also converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
 
