@@ -10,7 +10,7 @@ Under the hood, it uses [DBOS](https://github.com/dbos-inc/dbos-transact-py) to 
 ## Why Durable Execution?
 
 As multi-agent workflows become more common, longer-running, and more interactive, it's important to make them **reliable**.
-If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be robust to transient failures, such as server restarts.
+If an agent spends hours waiting for user inputs or processing complex workflows, it needs to be resilient to transient failures, such as server restarts.
 However, reliable multi-agent orchestration isn't easy&mdash;it requires complex rearchitecting like routing agent communication through SQS or Kafka.
 
 Durable execution helps you write reliable agents while preserving the **ease of use** of a framework like Swarm.
@@ -64,7 +64,13 @@ pip install dbos git+https://github.com/openai/swarm.git
 dbos init --config
 ```
 
-To try it out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
+You also need an OpenAI API key. You can obtain one [here](https://platform.openai.com/api-keys). Set it as an environment variable:
+
+```
+export OPENAI_API_KEY=<your-key>
+```
+
+To try Durable Swarm out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
 
 ```python
 from swarm import Agent
@@ -97,9 +103,10 @@ print(response.messages[-1]["content"])
 
 DBOS requires Postgres.
 If you already have a Postgres server, modify `dbos-config.yaml` to configure its connection information.
-Otherwise, you can start Postgres using Docker:
+Otherwise, we provide a [script](./start_postgres_docker.py) to start Postgres using Docker:
 
 ```
+export PGPASSWORD=swarm
 python3 start_postgres_docker.py
 ```
 
@@ -117,7 +124,7 @@ What do you need, friend?
 You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 1. Install `dbos` and initialize it with `dbos init --config`.
-2. Add the `durable_swarm.py` file to your project.
+2. Add [`durable_swarm.py`](durable_swarm.py) to your project.
 3. Use `DurableSwarm` in place of `Swarm` in your application.
 
 > [!NOTE]
@@ -125,9 +132,10 @@ You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 ## Examples
 
-We created a new example highlighting how to use Durable Swarm to build a durable refund agent that automatically recovers from interruptions while processing refunds.
+We created an example app using Durable Swarm to build a durable refund agent that automatically recovers from interruptions while processing refunds.
+Check it out [here](examples/reliable_refund/) or watch this GIF of the app in action:
 
-- [`reliable_refund`](examples/reliable_refund/)
+![Durable Swarm Demo](assets/demo.gif)
 
 We also converted each of the original Swarm examples to DurableSwarm. Find them in `examples/` and learn more about each one in its README.
 
