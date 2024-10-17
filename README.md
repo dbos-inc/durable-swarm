@@ -124,7 +124,7 @@ What do you need, friend?
 You can convert any existing Swarm app to DurableSwarm in three simple steps:
 
 1. Install `dbos` and initialize it with `dbos init --config`.
-2. Add the `durable_swarm.py` file to your project.
+2. Add [`durable_swarm.py`](durable_swarm.py) to your project.
 3. Use `DurableSwarm` in place of `Swarm` in your application.
 
 > [!NOTE]
