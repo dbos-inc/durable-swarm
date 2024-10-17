@@ -97,9 +97,10 @@ print(response.messages[-1]["content"])
 
 DBOS requires Postgres.
 If you already have a Postgres server, modify `dbos-config.yaml` to configure its connection information.
-Otherwise, you can start Postgres using Docker:
+Otherwise, we provide a [script](./start_postgres_docker.py) to start Postgres using Docker:
 
 ```
+export PGPASSWORD=swarm
 python3 start_postgres_docker.py
 ```
 
