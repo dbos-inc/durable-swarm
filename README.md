@@ -64,7 +64,13 @@ pip install dbos git+https://github.com/openai/swarm.git
 dbos init --config
 ```
 
-To try it out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
+You also need an OpenAI API key. You can obtain one [here](https://platform.openai.com/api-keys). Set it as an environment variable:
+
+```
+export OPENAI_API_KEY=<your-key>
+```
+
+To try Durable Swarm out, create `durable_swarm.py` as above then create a `main.py` file in the same directory containing this simple program:
 
 ```python
 from swarm import Agent
