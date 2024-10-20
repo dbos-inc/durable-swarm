@@ -14,7 +14,7 @@ However, thanks to **durable execution**, even if the agent is interrupted durin
 To run the demo:
 
 ```shell
-python3 run.py
+python3 main.py
 ```
 
 You can press `Ctrl+C` at any point while the agent is processing your refund.
