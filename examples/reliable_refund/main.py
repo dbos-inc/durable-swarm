@@ -1,9 +1,10 @@
 import signal
 import sys
 
-from dbos import DBOS, DBOSConfiguredInstance, SetWorkflowID
+from dbos import DBOS, DBOSConfiguredInstance
 from swarm import Swarm
 from swarm.repl.repl import pretty_print_messages
+
 from agents import refunds_agent
 
 DBOS()
@@ -37,13 +38,11 @@ def main():
     query = "I want to refund item 99 because it's too expensive and I don't like its color! I want to proceed with the refund and also get a discount for my next purchase!"
     context_variables = {"user_name": user_name}
 
-    # SetWorkflowID is used to ensure that user is refunded exactly once.
-    with SetWorkflowID(user_name):
-        client.run(
-            agent=refunds_agent,
-            messages=[{"role": "user", "content": query}],
-            context_variables=context_variables,
-        )
+    client.run(
+        agent=refunds_agent,
+        messages=[{"role": "user", "content": query}],
+        context_variables=context_variables,
+    )
 
 signal.signal(signal.SIGINT, lambda x, y: sys.exit(0))  # Exit gracefully on Ctrl+C
 
