@@ -19,5 +19,9 @@ database:
 telemetry:
   logs:
     logLevel: WARNING
+  OTLPExporter:
+    logsEndpoint: 'http://localhost:4318/v1/logs'
+    tracesEndpoint: 'http://localhost:4318/v1/traces'
 env:
   OPENAI_API_KEY: ${OPENAI_API_KEY}
+  OTEL_SERVICE_NAME: 'refund_agent'

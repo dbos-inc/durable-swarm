@@ -48,3 +48,4 @@ signal.signal(signal.SIGINT, lambda x, y: sys.exit(0))  # Exit gracefully on Ctr
 
 if __name__ == "__main__":
     main()
+    DBOS.destroy()

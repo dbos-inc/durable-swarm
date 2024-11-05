@@ -48,3 +48,30 @@ apply_discount()
 Refunds Agent: I've processed the refund for item 99 and also applied a discount of 11% for your next purchase. If there's anything else you need, feel free to ask!
 
 ```
+
+## Viewing OpenTelemetry Traces
+
+DBOS automatically constructs [OpenTelemetry traces](https://docs.dbos.dev/python/tutorials/logging-and-tracing#opentelemetry-export) of all workflows and their steps. You can use [Jaeger](https://www.jaegertracing.io/docs/latest/getting-started/) to visualize the traces.
+
+Start a Jaeger all-in-one Docker container with a single command:
+```shell
+docker run --rm --name jaeger \
+    -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
+    -p 6831:6831/udp \
+    -p 6832:6832/udp \
+    -p 5778:5778 \
+    -p 16686:16686 \
+    -p 4317:4317 \
+    -p 4318:4318 \
+    -p 14250:14250 \
+    -p 14268:14268 \
+    -p 14269:14269 \
+    -p 9411:9411 \
+    jaegertracing/all-in-one:1.62.0
+```
+
+After it starts, run refund agent several times, and then navigate to `http://localhost:16686/` to explore traces!
+
+Here is an example screenshot, where you can clearly see each function call (`run`, `get_chat_completion`, `refund_step`, and `apply_discount`) and their latencies:
+
+![Jaeger Traces](../../assets/jaeger-traces.png)
