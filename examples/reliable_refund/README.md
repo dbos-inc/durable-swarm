@@ -26,27 +26,27 @@ For example:
 > python3 main.py
 
 Connecting to Durable Refund Agent 💪🐝
-What's your name: Max
-[mock] Refunding for Max, item item_99, because Too expensive and I don't like its color...
-[mock] Processing refund step 1... Press Control + C to quit
-[mock] Processing refund step 2... Press Control + C to quit
-[mock] Processing refund step 3... Press Control + C to quit
+What's your name:
+Qian
+Refunding for Qian, item item_99, because Too expensive and didn't like the color...
+Processing refund step 1... Press Control + C to quit
+Processing refund step 2... Press Control + C to quit
+Processing refund step 3... Press Control + C to quit
 ^C⏎
 
 # Resume from where the last completed step (step 3), continuing with step 4.
 > python3 main.py
 
 Connecting to Durable Refund Agent 💪🐝
-[mock] Refunding for Max, item item_99, because Too expensive and I don't like its color...
-[mock] Processing refund step 4... Press Control + C to quit
-[mock] Processing refund step 5... Press Control + C to quit
-[mock] Refund successfully processed!
-[mock] Applying discount...
+Refunding for Qian, item item_99, because Too expensive and didn't like the color...
+Processing refund step 4... Press Control + C to quit
+Processing refund step 5... Press Control + C to quit
+Refund successfully processed!
+Applying discount...
 Refunds Agent:
-process_refund("item_id"= "item_99", "reason"= "Too expensive and I don't like its color")
+process_refund("item_id"= "item_99", "reason"= "Too expensive and didn't like the color")
 apply_discount()
-Refunds Agent: I've processed the refund for item 99 and also applied a discount of 11% for your next purchase. If there's anything else you need, feel free to ask!
-
+Refunds Agent: Your refund for item 99 has been successfully processed, and I've also applied an 11% discount for your next purchase. If you need any further assistance, feel free to let me know!
 ```
 
 ## Viewing OpenTelemetry Traces
