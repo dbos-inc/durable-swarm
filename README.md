@@ -2,6 +2,9 @@
 
 # DurableSwarm: Reliable Multi-Agent Orchestration
 
+> [!IMPORTANT]
+> DurableSwarm is now replaced by the [DBOS Durable OpenAI Agents SDK](https://github.com/dbos-inc/dbos-openai-agents) integration, which is a production-ready evolution of DurableSwarm. We recommend migrating to the Agents SDK for all production use cases.
+
 This repository augments [OpenAI's Swarm](https://github.com/openai/swarm) with **durable execution** to help you build **reliable** multi-agent systems.
 
 Durable Swarm is a drop-in replacement for Swarm that makes your agentic workflows **resilient to any failure**, so that if they are interrupted or restarted, they automatically resume from their last completed steps.
